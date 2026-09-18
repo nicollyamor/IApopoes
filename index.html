@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RasinformaticA · Pipoca Gourmet</title>
+  <title>Pipoca Gourmet · Quiz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,41 +16,39 @@
     }
 
     :root {
-      /* Paleta Pipoca Gourmet — Light */
-      --bg-cream: #fef9f0;          /* creme suave, como pipoca com manteiga */
-      --bg-blush: #fce9d6;          /* caramelo claro */
-      --bg-rose: #f5d6b8;           /* pipoca doce */
-      --accent: #c97b2e;            /* caramelo dourado */
-      --accent-deep: #8b5a1e;       /* caramelo profundo */
-      --gold: #e6b422;              /* manteiga derretida */
-      --gold-soft: #f5d78e;         /* manteiga clara */
-      --chocolate: #4a2c1a;         /* chocolate amargo */
-      --text-primary: #3d2b1a;      /* marrom escuro */
-      --text-secondary: #8a6f5a;    /* marrom suave */
-      --card-bg: #ffffff;           /* branco pipoca */
-      --border-soft: #f0dcc8;       /* borda quente */
-      --option-bg: #fffaf5;         /* fundo opção */
+      --bg-cream: #fef9f0;
+      --bg-blush: #fce9d6;
+      --bg-rose: #f5d6b8;
+      --accent: #c97b2e;
+      --accent-deep: #8b5a1e;
+      --gold: #e6b422;
+      --gold-soft: #f5d78e;
+      --chocolate: #4a2c1a;
+      --text-primary: #3d2b1a;
+      --text-secondary: #8a6f5a;
+      --card-bg: #ffffff;
+      --border-soft: #f0dcc8;
+      --option-bg: #fffaf5;
       --option-border: #f0dcc8;
       --option-hover-bg: #fdf1e6;
       --option-hover-border: #c97b2e;
-      --correct-bg: #e3f2e3;        /* verde erva-doce */
+      --correct-bg: #e3f2e3;
       --correct-border: #7aa874;
       --correct-text: #3d5c3a;
-      --wrong-bg: #fbe4e4;          /* vermelho suave */
+      --wrong-bg: #fbe4e4;
       --wrong-border: #d98b8b;
       --wrong-text: #7a3333;
-      --footer-bg: #3d2b1a;         /* chocolate escuro */
+      --footer-bg: #3d2b1a;
       --footer-text: #fef9f0;
       --shadow-soft: 0 20px 45px -20px rgba(139, 90, 30, 0.35);
     }
 
-    /* ========== PIPOCA GOURMET — TEMA ESCURO ========== */
     body.dark-theme {
-      --bg-cream: #1a120c;          /* caramelo escuro */
-      --bg-blush: #2b1e14;          /* pipoca tostada */
-      --bg-rose: #4a2c1a;           /* chocolate */
-      --accent: #e8a44a;            /* caramelo brilhante */
-      --accent-deep: #f0c58a;       /* caramelo claro */
+      --bg-cream: #1a120c;
+      --bg-blush: #2b1e14;
+      --bg-rose: #4a2c1a;
+      --accent: #e8a44a;
+      --accent-deep: #f0c58a;
       --gold: #e6b422;
       --gold-soft: #b88a5e;
       --chocolate: #fef9f0;
@@ -89,7 +87,6 @@
       overflow-x: hidden;
     }
 
-    /* Marca d'água — "PIPOCA" */
     body::before {
       content: "PIPOCA";
       position: fixed;
@@ -106,7 +103,6 @@
       letter-spacing: -0.05em;
     }
 
-    /* Brand badge */
     .brand-badge {
       position: fixed;
       top: 24px;
@@ -136,7 +132,6 @@
       50% { box-shadow: 0 0 0 8px rgba(201, 123, 46, 0.05); }
     }
 
-    /* Theme toggle */
     .theme-toggle {
       position: fixed;
       top: 20px;
@@ -167,7 +162,6 @@
       transform: scale(0.95);
     }
 
-    /* Container principal */
     .quiz-container {
       background: var(--card-bg);
       max-width: 680px;
@@ -198,7 +192,7 @@
 
     header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 2.6rem;
       font-weight: 700;
       font-style: italic;
       color: var(--text-primary);
@@ -217,7 +211,6 @@
       transition: color 0.3s ease, border-color 0.3s ease;
     }
 
-    /* Progresso */
     .progress {
       width: 100%;
       height: 6px;
@@ -236,7 +229,6 @@
       transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Pergunta */
     .question-container {
       margin-bottom: 24px;
     }
@@ -252,7 +244,6 @@
       transition: color 0.3s ease;
     }
 
-    /* Opções */
     .options {
       display: flex;
       flex-direction: column;
@@ -322,7 +313,6 @@
       color: var(--accent);
     }
 
-    /* Feedback */
     .feedback-area {
       display: flex;
       flex-direction: column;
@@ -381,7 +371,6 @@
       color: var(--text-secondary);
     }
 
-    /* Resultado */
     .result-screen {
       text-align: center;
       padding: 12px 0;
@@ -427,7 +416,6 @@
       display: none;
     }
 
-    /* Footer */
     .contact-footer {
       position: fixed;
       right: 0;
@@ -482,7 +470,6 @@
       flex-shrink: 0;
     }
 
-    /* Responsivo */
     @media (max-width: 600px) {
       body {
         padding: 80px 14px 80px 14px;
@@ -500,7 +487,7 @@
       }
 
       header h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
 
       #questionText {
@@ -550,13 +537,11 @@
   </style>
 </head>
 <body>
-  <!-- Brand badge -->
   <div class="brand-badge">
     <span class="brand-dot"></span>
     <span>PIPOCA GOURMET</span>
   </div>
 
-  <!-- Botão de alternância de tema -->
   <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
     <span class="theme-icon">🌙</span>
   </button>
@@ -564,16 +549,14 @@
   <div class="quiz-container">
     <header>
       <p class="eyebrow">Sabores do conhecimento</p>
-      <h1>🤖 IA na Escola🤯</h1>
-      <p class="subtitle">Teste seus conhecimentos sobre inteligência artificial no ambiente escolar</p>
+      <h1>🍿 Pipoca Gourmet 🤤</h1>
+      <p class="subtitle">Teste seus conhecimentos sobre pipoca, recheios e coberturas</p>
     </header>
 
-    <!-- Barra de progresso -->
     <div class="progress">
       <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <!-- Área principal do quiz -->
     <main id="quizArea">
       <div class="question-container">
         <h2 id="questionText">Carregando...</h2>
@@ -586,7 +569,6 @@
       </div>
     </main>
 
-    <!-- Tela de resultado -->
     <div id="resultScreen" class="result-screen hidden">
       <h2>Quiz concluído! 🎉</h2>
       <p id="scoreText"></p>
@@ -594,7 +576,6 @@
     </div>
   </div>
 
-  <!-- Footer vertical com contatos -->
   <footer class="contact-footer">
     <a href="https://wa.me/5500000000000" 
        target="_blank" 
@@ -620,96 +601,96 @@
   </footer>
 
   <script>
-    // Banco de perguntas sobre IA na escola
+    // ============================================
+    // BANCO DE PERGUNTAS — PIPOCA GOURMET E RECHEIOS
+    // ============================================
     const quizData = [
       {
-        question: "O que significa a sigla 'IA'?",
+        question: "Qual grão é a base da pipoca?",
         options: [
-          "Inteligência Analógica",
-          "Inteligência Artificial",
-          "Interação Automatizada",
-          "Informática Aplicada"
+          "Arroz",
+          "Milho",
+          "Trigo",
+          "Feijão"
         ],
         answer: 1
       },
       {
-        question: "Qual ferramenta de IA pode ajudar a criar resumos de textos escolares?",
+        question: "Qual é a temperatura ideal para estourar a pipoca?",
         options: [
-          "ChatGPT",
-          "Microsoft Word",
-          "Google Maps",
-          "Calculadora"
+          "50 °C",
+          "100 °C",
+          "180–200 °C",
+          "300 °C"
+        ],
+        answer: 2
+      },
+      {
+        question: "Qual recheio é clássico da pipoca gourmet doce?",
+        options: [
+          "Chocolate belga",
+          "Cheddar",
+          "Bacon",
+          "Azeitona"
         ],
         answer: 0
       },
       {
-        question: "Na escola, a IA pode ser usada para:",
+        question: "Qual cobertura é típica da pipoca gourmet salgada?",
         options: [
-          "Substituir completamente os professores",
-          "Criar atividades personalizadas para alunos",
-          "Impedir o acesso à internet",
-          "Corrigir provas sem critério algum"
+          "Leite condensado",
+          "Caramelo salgado",
+          "Cheddar e bacon",
+          "Nutella"
+        ],
+        answer: 2
+      },
+      {
+        question: "O que é 'pipoca gourmet'?",
+        options: [
+          "Pipoca feita no micro-ondas",
+          "Pipoca com sabores e coberturas diferenciadas",
+          "Pipoca sem sal",
+          "Pipoca queimada"
         ],
         answer: 1
       },
       {
-        question: "Qual dessas é uma preocupação ética no uso de IA na educação?",
+        question: "Qual recheio combina com pipoca caramelizada?",
         options: [
-          "A IA deixar os alunos mais inteligentes",
-          "A privacidade dos dados dos estudantes",
-          "O excesso de lições de casa",
-          "A velocidade da internet"
+          "Queijo minas",
+          "Chocolate meio amargo",
+          "Camarão",
+          "Picles"
         ],
         answer: 1
       },
       {
-        question: "O que é 'aprendizado de máquina' (machine learning)?",
+        question: "Qual ingrediente deixa a pipoca crocante e dourada?",
         options: [
-          "Um tipo de máquina de escrever moderna",
-          "Um ramo da IA que permite sistemas aprenderem com dados",
-          "Um jogo educativo",
-          "Um método de ensino tradicional"
-        ],
-        answer: 1
-      },
-      {
-        question: "Como a IA pode auxiliar alunos com dificuldades de aprendizagem?",
-        options: [
-          "Oferecendo tutoria personalizada e adaptativa",
-          "Dando notas mais altas automaticamente",
-          "Fazendo a lição por eles",
-          "Ignorando suas necessidades"
+          "Açúcar caramelizado",
+          "Óleo de soja",
+          "Vinagre",
+          "Leite"
         ],
         answer: 0
       },
       {
-        question: "Qual é um exemplo de IA generativa?",
+        question: "Qual sabor de pipoca gourmet é mais popular no Brasil?",
         options: [
-          "DALL-E (gerador de imagens)",
-          "Excel",
-          "Windows",
-          "Google Chrome"
+          "Pipoca de feijoada",
+          "Pipoca de churrasco",
+          "Pipoca doce com chocolate",
+          "Pipoca de sushi"
         ],
-        answer: 0
-      },
-      {
-        question: "O uso responsável da IA na escola envolve:",
-        options: [
-          "Copiar respostas da IA sem citar",
-          "Usar como ferramenta de apoio, mantendo o pensamento crítico",
-          "Deixar a IA tomar todas as decisões",
-          "Proibir qualquer tecnologia"
-        ],
-        answer: 1
+        answer: 2
       }
     ];
 
-    // Variáveis de controle
     let currentQuestionIndex = 0;
     let score = 0;
     let answered = false;
 
-    // Elementos do DOM
     const questionText = document.getElementById('questionText');
     const optionsContainer = document.getElementById('optionsContainer');
     const feedbackMessage = document.getElementById('feedbackMessage');
@@ -721,8 +702,6 @@
     const restartButton = document.getElementById('restartButton');
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle.querySelector('.theme-icon');
-
-    // ============ FUNÇÕES DO QUIZ ============
 
     function updateProgress() {
       const progress = ((currentQuestionIndex + 1) / quizData.length) * 100;
@@ -817,42 +796,30 @@
       loadQuestion();
     }
 
-    // ============ FUNÇÕES DE TEMA ============
-
     function toggleTheme() {
       document.body.classList.toggle('dark-theme');
       const isDark = document.body.classList.contains('dark-theme');
       
-      // Atualizar ícone
       themeIcon.textContent = isDark ? '☀️' : '🌙';
       
-      // Salvar preferência
       try {
-        localStorage.setItem('quizIA-theme', isDark ? 'dark' : 'light');
-      } catch (e) {
-        // localStorage pode não estar disponível
-      }
+        localStorage.setItem('quizPipoca-theme', isDark ? 'dark' : 'light');
+      } catch (e) {}
     }
 
     function loadSavedTheme() {
       try {
-        const savedTheme = localStorage.getItem('quizIA-theme');
+        const savedTheme = localStorage.getItem('quizPipoca-theme');
         if (savedTheme === 'dark') {
           document.body.classList.add('dark-theme');
           themeIcon.textContent = '☀️';
         }
-      } catch (e) {
-        // Ignora erros de localStorage
-      }
+      } catch (e) {}
     }
-
-    // ============ EVENT LISTENERS ============
 
     nextButton.addEventListener('click', nextQuestion);
     restartButton.addEventListener('click', restartQuiz);
     themeToggle.addEventListener('click', toggleTheme);
-
-    // ============ INICIALIZAÇÃO ============
 
     loadSavedTheme();
     loadQuestion();
