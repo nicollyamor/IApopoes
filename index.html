@@ -1,60 +1,606 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nika Gourmet — Build Your Popcorn</title>
+  <title>RasinformaticA · Pipoca Gourmet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========== PIPOCA GOURMET — TEMA CLARO ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Paleta Pipoca Gourmet — Light */
+      --bg-cream: #fef9f0;          /* creme suave, como pipoca com manteiga */
+      --bg-blush: #fce9d6;          /* caramelo claro */
+      --bg-rose: #f5d6b8;           /* pipoca doce */
+      --accent: #c97b2e;            /* caramelo dourado */
+      --accent-deep: #8b5a1e;       /* caramelo profundo */
+      --gold: #e6b422;              /* manteiga derretida */
+      --gold-soft: #f5d78e;         /* manteiga clara */
+      --chocolate: #4a2c1a;         /* chocolate amargo */
+      --text-primary: #3d2b1a;      /* marrom escuro */
+      --text-secondary: #8a6f5a;    /* marrom suave */
+      --card-bg: #ffffff;           /* branco pipoca */
+      --border-soft: #f0dcc8;       /* borda quente */
+      --option-bg: #fffaf5;         /* fundo opção */
+      --option-border: #f0dcc8;
+      --option-hover-bg: #fdf1e6;
+      --option-hover-border: #c97b2e;
+      --correct-bg: #e3f2e3;        /* verde erva-doce */
+      --correct-border: #7aa874;
+      --correct-text: #3d5c3a;
+      --wrong-bg: #fbe4e4;          /* vermelho suave */
+      --wrong-border: #d98b8b;
+      --wrong-text: #7a3333;
+      --footer-bg: #3d2b1a;         /* chocolate escuro */
+      --footer-text: #fef9f0;
+      --shadow-soft: 0 20px 45px -20px rgba(139, 90, 30, 0.35);
+    }
+
+    /* ========== PIPOCA GOURMET — TEMA ESCURO ========== */
+    body.dark-theme {
+      --bg-cream: #1a120c;          /* caramelo escuro */
+      --bg-blush: #2b1e14;          /* pipoca tostada */
+      --bg-rose: #4a2c1a;           /* chocolate */
+      --accent: #e8a44a;            /* caramelo brilhante */
+      --accent-deep: #f0c58a;       /* caramelo claro */
+      --gold: #e6b422;
+      --gold-soft: #b88a5e;
+      --chocolate: #fef9f0;
+      --text-primary: #f5e6d6;
+      --text-secondary: #b89988;
+      --card-bg: #241a12;
+      --border-soft: #3d2b1a;
+      --option-bg: #2b1e14;
+      --option-border: #4a2c1a;
+      --option-hover-bg: #3d2b1a;
+      --option-hover-border: #e8a44a;
+      --correct-bg: #1f3a1f;
+      --correct-border: #7aa874;
+      --correct-text: #c8e6c8;
+      --wrong-bg: #3d1f1f;
+      --wrong-border: #d98b8b;
+      --wrong-text: #f0c5c5;
+      --footer-bg: #140d0a;
+      --footer-text: #f5e6d6;
+      --shadow-soft: 0 20px 45px -20px rgba(0, 0, 0, 0.6);
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+      background: var(--bg-cream);
+      background-image: 
+        radial-gradient(circle at 15% 15%, var(--bg-blush) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, var(--bg-rose) 0%, transparent 50%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 100px 40px 40px;
+      transition: background 0.5s ease, color 0.4s ease;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Marca d'água — "PIPOCA" */
+    body::before {
+      content: "PIPOCA";
+      position: fixed;
+      bottom: -60px;
+      left: -30px;
+      font-family: 'Playfair Display', serif;
+      font-size: 16rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--accent);
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+      letter-spacing: -0.05em;
+    }
+
+    /* Brand badge */
+    .brand-badge {
+      position: fixed;
+      top: 24px;
+      left: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--text-secondary);
+      z-index: 100;
+      transition: color 0.3s ease;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(201, 123, 46, 0.15);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(201, 123, 46, 0.15); }
+      50% { box-shadow: 0 0 0 8px rgba(201, 123, 46, 0.05); }
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border-soft);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.08);
+      border-color: var(--accent);
+      box-shadow: 0 8px 20px rgba(201, 123, 46, 0.2);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+
+    /* Container principal */
+    .quiz-container {
+      background: var(--card-bg);
+      max-width: 680px;
+      width: 100%;
+      border-radius: 36px;
+      box-shadow: var(--shadow-soft);
+      padding: 48px 44px 40px;
+      position: relative;
+      z-index: 1;
+      border: 1px solid var(--border-soft);
+      transition: all 0.4s ease;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 300;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-soft);
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Progresso */
+    .progress {
+      width: 100%;
+      height: 6px;
+      background: var(--border-soft);
+      border-radius: 20px;
+      margin-bottom: 32px;
+      overflow: hidden;
+      transition: background 0.3s ease;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      border-radius: 20px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Pergunta */
+    .question-container {
+      margin-bottom: 24px;
+    }
+
+    #questionText {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 26px;
+      line-height: 1.35;
+      min-height: 3.5rem;
+      transition: color 0.3s ease;
+    }
+
+    /* Opções */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .option {
+      background: var(--option-bg);
+      border: 1.5px solid var(--option-border);
+      border-radius: 18px;
+      padding: 16px 22px;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .option:hover:not(:disabled) {
+      background: var(--option-hover-bg);
+      border-color: var(--option-hover-border);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -8px rgba(201, 123, 46, 0.3);
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+      color: var(--correct-text);
+    }
+
+    .option.wrong {
+      background: var(--wrong-bg);
+      border-color: var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .option.disabled {
+      cursor: not-allowed;
+      opacity: 0.85;
+    }
+
+    .option-letter {
+      background: var(--card-bg);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent);
+      border: 1.5px solid var(--border-soft);
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-theme .option-letter {
+      color: var(--accent);
+    }
+
+    /* Feedback */
+    .feedback-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    #feedbackMessage {
+      font-weight: 500;
+      font-size: 1rem;
+      min-height: 2.5rem;
+      text-align: center;
+      color: var(--text-primary);
+      font-style: italic;
+      transition: color 0.3s ease;
+    }
+
+    #nextButton, #restartButton {
+      background: var(--chocolate);
+      color: var(--bg-cream);
+      border: none;
+      padding: 15px 40px;
+      border-radius: 40px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    #nextButton:hover:not(:disabled), #restartButton:hover {
+      background: var(--accent-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -10px rgba(139, 90, 30, 0.5);
+    }
+
+    #nextButton:disabled {
+      background: var(--border-soft);
+      color: var(--text-secondary);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    body.dark-theme #nextButton,
+    body.dark-theme #restartButton {
+      color: var(--chocolate);
+    }
+
+    body.dark-theme #nextButton:disabled {
+      color: var(--text-secondary);
+    }
+
+    /* Resultado */
+    .result-screen {
+      text-align: center;
+      padding: 12px 0;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-screen h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-style: italic;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      transition: color 0.3s ease;
+    }
+
+    #scoreText {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin: 20px 0 30px;
+      background: var(--option-bg);
+      border: 1px solid var(--border-soft);
+      padding: 26px 22px;
+      border-radius: 24px;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+
+    #scoreText strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Footer */
+    .contact-footer {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 18px 12px;
+      background: var(--footer-bg);
+      border-radius: 24px 0 0 24px;
+      z-index: 999;
+      transition: background 0.4s ease;
+    }
+
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      width: 58px;
+      padding: 10px 6px;
+      color: var(--footer-text);
+      text-decoration: none;
+      border-radius: 14px;
+      transition: all 0.3s ease;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .contact-link:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(-4px);
+    }
+
+    .contact-link.whatsapp:hover {
+      background: #25d366;
+      color: white;
+    }
+
+    .contact-link.github:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .contact-link svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    /* Responsivo */
+    @media (max-width: 600px) {
+      body {
+        padding: 80px 14px 80px 14px;
+      }
+
+      .brand-badge {
+        top: 18px;
+        left: 18px;
+        font-size: 0.65rem;
+      }
+
+      .quiz-container {
+        padding: 36px 24px 30px;
+        border-radius: 28px;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      #questionText {
+        font-size: 1.25rem;
+      }
+
+      .option {
+        padding: 14px 16px;
+        font-size: 0.95rem;
+      }
+
+      .theme-toggle {
+        top: 14px;
+        right: 14px;
+        width: 42px;
+        height: 42px;
+      }
+
+      body::before {
+        font-size: 8rem;
+        bottom: -20px;
+      }
+
+      .contact-footer {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        transform: none;
+        flex-direction: row;
+        justify-content: center;
+        border-radius: 20px 20px 0 0;
+        padding: 10px;
+        gap: 8px;
+      }
+
+      .contact-link {
+        width: 70px;
+        padding: 8px 6px;
+      }
+
+      .contact-link:hover {
+        transform: translateY(-4px);
+      }
+    }
+  </style>
 </head>
 <body>
-  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+  <!-- Brand badge -->
+  <div class="brand-badge">
+    <span class="brand-dot"></span>
+    <span>PIPOCA GOURMET</span>
+  </div>
+
+  <!-- Botão de alternância de tema -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
     <span class="theme-icon">🌙</span>
   </button>
 
-  <div class="brand-badge">
-    <span class="brand-dot"></span>
-    <span>NIKA GOURMET</span>
-  </div>
-
   <div class="quiz-container">
     <header>
-      <p class="eyebrow">Handcrafted · Since 2015</p>
-      <h1>Gourmet Popcorn</h1>
-      <p class="subtitle">Build your perfect stuffed popcorn experience</p>
+      <p class="eyebrow">Sabores do conhecimento</p>
+      <h1>🤖 IA na Escola🤯</h1>
+      <p class="subtitle">Teste seus conhecimentos sobre inteligência artificial no ambiente escolar</p>
     </header>
 
+    <!-- Barra de progresso -->
     <div class="progress">
       <div class="progress-bar" id="progressBar"></div>
     </div>
 
+    <!-- Área principal do quiz -->
     <main id="quizArea">
       <div class="question-container">
-        <h2 id="questionText">Loading...</h2>
+        <h2 id="questionText">Carregando...</h2>
         <div id="optionsContainer" class="options"></div>
       </div>
 
       <div class="feedback-area">
         <p id="feedbackMessage"></p>
-        <button id="nextButton" disabled>Next Step</button>
+        <button id="nextButton" disabled>Próxima pergunta</button>
       </div>
     </main>
 
+    <!-- Tela de resultado -->
     <div id="resultScreen" class="result-screen hidden">
-      <h2>Your Order Is Ready 🎀</h2>
+      <h2>Quiz concluído! 🎉</h2>
       <p id="scoreText"></p>
-      <button id="restartButton">Build Another Order</button>
+      <button id="restartButton">Jogar novamente</button>
     </div>
   </div>
 
+  <!-- Footer vertical com contatos -->
   <footer class="contact-footer">
     <a href="https://wa.me/5500000000000" 
        target="_blank" 
        rel="noopener noreferrer" 
        class="contact-link whatsapp" 
-       aria-label="Contact via WhatsApp">
+       aria-label="Contato via WhatsApp">
       <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
       </svg>
@@ -65,7 +611,7 @@
        target="_blank" 
        rel="noopener noreferrer" 
        class="contact-link github" 
-       aria-label="GitHub Profile">
+       aria-label="Perfil no GitHub">
       <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
         <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
       </svg>
@@ -73,6 +619,243 @@
     </a>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script>
+    // Banco de perguntas sobre IA na escola
+    const quizData = [
+      {
+        question: "O que significa a sigla 'IA'?",
+        options: [
+          "Inteligência Analógica",
+          "Inteligência Artificial",
+          "Interação Automatizada",
+          "Informática Aplicada"
+        ],
+        answer: 1
+      },
+      {
+        question: "Qual ferramenta de IA pode ajudar a criar resumos de textos escolares?",
+        options: [
+          "ChatGPT",
+          "Microsoft Word",
+          "Google Maps",
+          "Calculadora"
+        ],
+        answer: 0
+      },
+      {
+        question: "Na escola, a IA pode ser usada para:",
+        options: [
+          "Substituir completamente os professores",
+          "Criar atividades personalizadas para alunos",
+          "Impedir o acesso à internet",
+          "Corrigir provas sem critério algum"
+        ],
+        answer: 1
+      },
+      {
+        question: "Qual dessas é uma preocupação ética no uso de IA na educação?",
+        options: [
+          "A IA deixar os alunos mais inteligentes",
+          "A privacidade dos dados dos estudantes",
+          "O excesso de lições de casa",
+          "A velocidade da internet"
+        ],
+        answer: 1
+      },
+      {
+        question: "O que é 'aprendizado de máquina' (machine learning)?",
+        options: [
+          "Um tipo de máquina de escrever moderna",
+          "Um ramo da IA que permite sistemas aprenderem com dados",
+          "Um jogo educativo",
+          "Um método de ensino tradicional"
+        ],
+        answer: 1
+      },
+      {
+        question: "Como a IA pode auxiliar alunos com dificuldades de aprendizagem?",
+        options: [
+          "Oferecendo tutoria personalizada e adaptativa",
+          "Dando notas mais altas automaticamente",
+          "Fazendo a lição por eles",
+          "Ignorando suas necessidades"
+        ],
+        answer: 0
+      },
+      {
+        question: "Qual é um exemplo de IA generativa?",
+        options: [
+          "DALL-E (gerador de imagens)",
+          "Excel",
+          "Windows",
+          "Google Chrome"
+        ],
+        answer: 0
+      },
+      {
+        question: "O uso responsável da IA na escola envolve:",
+        options: [
+          "Copiar respostas da IA sem citar",
+          "Usar como ferramenta de apoio, mantendo o pensamento crítico",
+          "Deixar a IA tomar todas as decisões",
+          "Proibir qualquer tecnologia"
+        ],
+        answer: 1
+      }
+    ];
+
+    // Variáveis de controle
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    // Elementos do DOM
+    const questionText = document.getElementById('questionText');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    const nextButton = document.getElementById('nextButton');
+    const progressBar = document.getElementById('progressBar');
+    const quizArea = document.getElementById('quizArea');
+    const resultScreen = document.getElementById('resultScreen');
+    const scoreText = document.getElementById('scoreText');
+    const restartButton = document.getElementById('restartButton');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+
+    // ============ FUNÇÕES DO QUIZ ============
+
+    function updateProgress() {
+      const progress = ((currentQuestionIndex + 1) / quizData.length) * 100;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    function loadQuestion() {
+      answered = false;
+      nextButton.disabled = true;
+      feedbackMessage.textContent = '';
+
+      const currentQuestion = quizData[currentQuestionIndex];
+      questionText.textContent = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
+
+      optionsContainer.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      currentQuestion.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.classList.add('option');
+        button.setAttribute('data-index', index);
+        
+        button.innerHTML = `
+          <span class="option-letter">${letters[index]}</span>
+          <span>${option}</span>
+        `;
+
+        button.addEventListener('click', () => selectOption(index, button));
+        optionsContainer.appendChild(button);
+      });
+
+      updateProgress();
+    }
+
+    function selectOption(selectedIndex, selectedButton) {
+      if (answered) return;
+
+      answered = true;
+      const currentQuestion = quizData[currentQuestionIndex];
+      const isCorrect = selectedIndex === currentQuestion.answer;
+
+      const allOptions = document.querySelectorAll('.option');
+      allOptions.forEach(btn => {
+        btn.classList.add('disabled');
+        btn.disabled = true;
+      });
+
+      if (isCorrect) {
+        selectedButton.classList.add('correct');
+        score++;
+        feedbackMessage.textContent = '✅ Resposta correta! Muito bem!';
+      } else {
+        selectedButton.classList.add('wrong');
+        feedbackMessage.textContent = `❌ Resposta incorreta. A resposta certa é: ${currentQuestion.options[currentQuestion.answer]}`;
+        allOptions[currentQuestion.answer].classList.add('correct');
+      }
+
+      nextButton.disabled = false;
+    }
+
+    function nextQuestion() {
+      if (!answered) return;
+
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < quizData.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      quizArea.classList.add('hidden');
+      resultScreen.classList.remove('hidden');
+      
+      const totalQuestions = quizData.length;
+      scoreText.innerHTML = `<strong>${score} / ${totalQuestions}</strong>Você acertou ${score} de ${totalQuestions} perguntas!`;
+
+      progressBar.style.width = '100%';
+    }
+
+    function restartQuiz() {
+      currentQuestionIndex = 0;
+      score = 0;
+      answered = false;
+
+      resultScreen.classList.add('hidden');
+      quizArea.classList.remove('hidden');
+
+      progressBar.style.width = '0%';
+      loadQuestion();
+    }
+
+    // ============ FUNÇÕES DE TEMA ============
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-theme');
+      const isDark = document.body.classList.contains('dark-theme');
+      
+      // Atualizar ícone
+      themeIcon.textContent = isDark ? '☀️' : '🌙';
+      
+      // Salvar preferência
+      try {
+        localStorage.setItem('quizIA-theme', isDark ? 'dark' : 'light');
+      } catch (e) {
+        // localStorage pode não estar disponível
+      }
+    }
+
+    function loadSavedTheme() {
+      try {
+        const savedTheme = localStorage.getItem('quizIA-theme');
+        if (savedTheme === 'dark') {
+          document.body.classList.add('dark-theme');
+          themeIcon.textContent = '☀️';
+        }
+      } catch (e) {
+        // Ignora erros de localStorage
+      }
+    }
+
+    // ============ EVENT LISTENERS ============
+
+    nextButton.addEventListener('click', nextQuestion);
+    restartButton.addEventListener('click', restartQuiz);
+    themeToggle.addEventListener('click', toggleTheme);
+
+    // ============ INICIALIZAÇÃO ============
+
+    loadSavedTheme();
+    loadQuestion();
+  </script>
 </body>
 </html>
