@@ -1,94 +1,94 @@
-// ============ BANCO DE PERGUNTAS - PIPOCA & NUTELLA ============
+// ============ NIKA GOURMET — BUILD YOUR POPCORN ============
 const quizData = [
   {
-    question: "Qual é o tamanho ideal da pipoca para receber recheio?",
+    question: "What makes the perfect base for a gourmet stuffed popcorn?",
     options: [
-      "Pipoca bem pequena e quebrada",
-      "Pipoca grande e bem estourada",
-      "Pipoca queimada",
-      "Pipoca crua"
+      "Small, broken popcorn kernels",
+      "Large, fully-popped fluffy kernels",
+      "Burnt popcorn",
+      "Raw popcorn"
     ],
     answer: 1
   },
   {
-    question: "Qual recheio combina perfeitamente com pipoca doce?",
+    question: "Which filling pairs perfectly with sweet gourmet popcorn?",
     options: [
-      "Nutella com morango",
-      "Catchup",
-      "Mostarda",
-      "Maionese"
+      "Nutella with fresh strawberries",
+      "Ketchup",
+      "Mustard",
+      "Mayonnaise"
     ],
     answer: 0
   },
   {
-    question: "Como deixar a pipoca crocante por mais tempo?",
+    question: "How do you keep gourmet popcorn crispy for longer?",
     options: [
-      "Guardar em pote fechado após esfriar",
-      "Deixar aberta na geladeira",
-      "Molhar com água",
-      "Cobrir com pano úmido"
+      "Store in an airtight jar after cooling",
+      "Leave it open in the fridge",
+      "Sprinkle it with water",
+      "Cover with a damp cloth"
     ],
     answer: 0
   },
   {
-    question: "Qual tipo de pipoca é a base para pipocas recheadas?",
+    question: "Which popcorn style is the signature base at Nika Gourmet?",
     options: [
-      "Pipoca de micro-ondas com muito sal",
-      "Pipoca doce caramelizada",
-      "Pipoca salgada com bacon",
-      "Pipoca com queijo"
+      "Extra salty microwave popcorn",
+      "Caramelized sweet popcorn",
+      "Bacon-flavored salty popcorn",
+      "Cheese popcorn"
     ],
     answer: 1
   },
   {
-    question: "Qual a melhor forma de aplicar Nutella na pipoca?",
+    question: "What is the best way to apply Nutella to gourmet popcorn?",
     options: [
-      "Derretida e misturada delicadamente",
-      "Congelada em pedaços",
-      "Pura direto do pote sem aquecer",
-      "Com muita água"
+      "Melted and gently drizzled",
+      "Frozen in chunks",
+      "Straight from the jar, cold",
+      "Mixed with water"
     ],
     answer: 0
   },
   {
-    question: "Qual fruta combina com pipoca recheada de Nutella?",
+    question: "Which fruit is the classic pairing with Nutella stuffed popcorn?",
     options: [
-      "Morango",
-      "Cebola",
-      "Alho",
-      "Pimentão"
+      "Strawberry",
+      "Onion",
+      "Garlic",
+      "Bell pepper"
     ],
     answer: 0
   },
   {
-    question: "O que pode ser adicionado para dar crocância extra?",
+    question: "What topping adds that extra gourmet crunch?",
     options: [
-      "Granulado ou castanhas picadas",
-      "Molho de tomate",
-      "Azeite",
-      "Vinagre"
+      "Sprinkles or chopped nuts",
+      "Tomato sauce",
+      "Olive oil",
+      "Vinegar"
     ],
     answer: 0
   },
   {
-    question: "Qual bebida combina com pipoca doce de Nutella?",
+    question: "Which drink is the perfect match for Nutella gourmet popcorn?",
     options: [
-      "Café ou chocolate quente",
-      "Refrigerante de limão",
-      "Suco de tomate",
-      "Água com gás"
+      "Coffee or hot chocolate",
+      "Lemon soda",
+      "Tomato juice",
+      "Sparkling water"
     ],
     answer: 0
   }
 ];
 
-// Variáveis de controle
+// Control variables
 let currentQuestionIndex = 0;
 let score = 0;
 let answered = false;
 let respostasUsuario = [];
 
-// Elementos do DOM
+// DOM elements
 const questionText = document.getElementById('questionText');
 const optionsContainer = document.getElementById('optionsContainer');
 const feedbackMessage = document.getElementById('feedbackMessage');
@@ -101,7 +101,7 @@ const restartButton = document.getElementById('restartButton');
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = themeToggle.querySelector('.theme-icon');
 
-// ============ FUNÇÕES DO QUIZ ============
+// ============ QUIZ FUNCTIONS ============
 
 function updateProgress() {
   const progress = ((currentQuestionIndex + 1) / quizData.length) * 100;
@@ -159,10 +159,10 @@ function selectOption(selectedIndex, selectedButton) {
   if (isCorrect) {
     selectedButton.classList.add('correct');
     score++;
-    feedbackMessage.textContent = '✅ Boa escolha! Essa combinação é perfeita!';
+    feedbackMessage.textContent = '✨ Lovely choice — that pairing is perfect!';
   } else {
     selectedButton.classList.add('wrong');
-    feedbackMessage.textContent = `❌ Hmm, não é a melhor opção. O ideal seria: ${currentQuestion.options[currentQuestion.answer]}`;
+    feedbackMessage.textContent = `Hmm, not quite. The gourmet way would be: ${currentQuestion.options[currentQuestion.answer]}`;
     allOptions[currentQuestion.answer].classList.add('correct');
   }
 
@@ -190,16 +190,16 @@ function showResult() {
   
   let mensagem = '';
   if (percentual === 100) {
-    mensagem = '🍿 Uau! Você é um mestre da pipoca com Nutella!';
+    mensagem = 'A true Gourmet Connoisseur — every bite was perfection.';
   } else if (percentual >= 70) {
-    mensagem = '🍫 Muito bom! Seu pedido ficou quase perfeito!';
+    mensagem = 'Beautifully done! Your order is almost flawless.';
   } else if (percentual >= 50) {
-    mensagem = '🍿 Nada mal! Mas dá pra melhorar o recheio!';
+    mensagem = 'Not bad at all — a little more gourmet flair and you\'re there.';
   } else {
-    mensagem = '🍫 Precisa treinar mais na cozinha! Bora tentar de novo?';
+    mensagem = 'Time for another tasting session — let\'s refine that palate!';
   }
   
-  scoreText.innerHTML = `Você acertou ${score} de ${totalQuestions} perguntas (${percentual}%)<br><br>${mensagem}`;
+  scoreText.innerHTML = `<strong>${score} / ${totalQuestions}</strong>You scored ${percentual}% on your gourmet build.<br><br>${mensagem}`;
 
   progressBar.style.width = '100%';
 }
@@ -217,7 +217,7 @@ function restartQuiz() {
   loadQuestion();
 }
 
-// ============ FUNÇÕES DE TEMA ============
+// ============ THEME FUNCTIONS ============
 
 function toggleTheme() {
   document.body.classList.toggle('dark-theme');
@@ -226,22 +226,18 @@ function toggleTheme() {
   themeIcon.textContent = isDark ? '☀️' : '🌙';
   
   try {
-    localStorage.setItem('pipocaNutella-theme', isDark ? 'dark' : 'light');
-  } catch (e) {
-    // localStorage pode não estar disponível
-  }
+    localStorage.setItem('nikaGourmet-theme', isDark ? 'dark' : 'light');
+  } catch (e) {}
 }
 
 function loadSavedTheme() {
   try {
-    const savedTheme = localStorage.getItem('pipocaNutella-theme');
+    const savedTheme = localStorage.getItem('nikaGourmet-theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-theme');
       themeIcon.textContent = '☀️';
     }
-  } catch (e) {
-    // Ignora erros de localStorage
-  }
+  } catch (e) {}
 }
 
 // ============ EVENT LISTENERS ============
@@ -250,7 +246,7 @@ nextButton.addEventListener('click', nextQuestion);
 restartButton.addEventListener('click', restartQuiz);
 themeToggle.addEventListener('click', toggleTheme);
 
-// ============ INICIALIZAÇÃO ============
+// ============ INITIALIZATION ============
 
 loadSavedTheme();
 loadQuestion();
